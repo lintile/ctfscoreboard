@@ -19,3 +19,6 @@ lib
 # Python coverage toold
 .coverage
 htmlcov
+
+# Mac artifacts
+.DS_Store

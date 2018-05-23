@@ -60,14 +60,14 @@ sbDirectives.directive('countdownTimer', [
                     var timeleft = gameTimeService.toStart();
                     if (timeleft > 0) {
                         // Not yet started
-                        scope.to = "starts";
+                        scope.to = "T-";
                         scope.time = splitTime(timeleft);
                         return;
                     }
                     timeleft = gameTimeService.toEnd();
                     if (timeleft > 0) {
                         // During game
-                        scope.to = "ends";
+                        scope.to = "";
                         scope.time = splitTime(timeleft);
                         return;
                     }
@@ -78,8 +78,10 @@ sbDirectives.directive('countdownTimer', [
                     }
                     if (!gameTimeService.end)
                         scope.message = "Game on!";
-                    else
-                        scope.message = "Game over.";
+                    else {
+                        scope.to = "";
+                        scope.time = splitTime(0);
+                    }
                 };
                 gameTimeService.then(function() {
                     if (!gameTimeService.start && !gameTimeService.end)
@@ -404,6 +406,10 @@ sbDirectives.directive('challengeBox', [
             // Recent solves
             scope.recent = function() {
               if (!scope.chall) return []
+              if (!scope.chall.answers) {
+                console.log("I have no answers.");
+                return [];
+              }
               var answers = scope.chall.answers.map(function(e, i) {
                 e.date = (new Date(e.timestamp)).valueOf();
                 return e;

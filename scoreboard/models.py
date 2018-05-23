@@ -345,7 +345,7 @@ class Challenge(db.Model):
     prerequisite = db.Column(db.Text, nullable=False)  # Prerequisite Metadata
     answers = db.relationship('Answer',
                               backref=db.backref('challenge', lazy='joined'),
-                              lazy='select')
+                              lazy='joined')
 
     def __repr__(self):
         return '<Challenge: %d/%s>' % (self.cid, self.name)
@@ -363,17 +363,9 @@ class Challenge(db.Model):
         return bool(Answer.query.filter(Answer.challenge == self,
                                         Answer.team == team).count())
 
-    @hybrid.hybrid_property
+    @property
     def solves(self):
-        try:
-            return self._solves
-        except AttributeError:
-            self._solves = len(self.answers)
-            return self._solves
-
-    @solves.expression
-    def solves(cls):
-        return func.count(cls.answers)
+        return len(self.answers)
 
     @property
     def answered(self):

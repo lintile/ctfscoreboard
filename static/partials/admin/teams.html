@@ -17,7 +17,7 @@
 
 <!-- Single Team -->
 <div class='ng-hide' ng-show='!!team'>
-  <h2 ng-bind='team.name' ng-click='updateTeamModal()'></h2>
+  <h2 class='page-title' ng-bind='team.name' ng-click='updateTeamModal()'></h2>
   <div class='row'>
     <div class='tag-chart col-md-6' donut-chart chart-data='tagData'></div>
     <div class='team-score-chart col-md-6' score-chart chart-data='scoreHistory'></div>

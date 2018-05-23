@@ -70,6 +70,6 @@ globalCtrls.controller('NewsCtrl', [
             }
         };
 
-        newsService.registerClient(updateNews);
-        newsService.start();
+        //newsService.registerClient(updateNews);
+        //newsService.start();
     }]);

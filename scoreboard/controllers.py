@@ -143,7 +143,7 @@ def submit_answer(cid, answer, token):
                 correct = 'CORRECT'
             return points
         else:
-            raise errors.InvalidAnswerError('Really?  Haha no....')
+            raise errors.InvalidAnswerError('Answer not accepted. This incident will be reported.')
     except errors.IntegrityError:
         models.db.session.rollback()
         raise

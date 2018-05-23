@@ -30,6 +30,7 @@ DEFAULT_CSP_POLICY = {
         'script-src': [
             "'self'",
             "'unsafe-eval'",  # Needed for Charts.js
+            "'unsafe-inline'",
         ],
         'frame-ancestors': ["'none'"],
         'img-src': [
